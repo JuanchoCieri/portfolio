@@ -269,51 +269,117 @@
             transform: scale(1.02);
         }
 
-        /* Contenedor 16:9 para YouTube */
-        .video-container {
+        /* Tarjeta visual idéntica a YouTube (Sin error de bloqueo de iframe) */
+        .yt-card {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%;
-            height: 0;
+            aspect-ratio: 16 / 9;
             background-color: #000;
             border-radius: 4px;
             overflow: hidden;
+            display: block;
             border: 1px solid var(--border-subtle);
         }
 
-        .video-container iframe {
+        .yt-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0.9;
+        }
+
+        .yt-card:hover img {
+            transform: scale(1.02);
+            opacity: 0.75;
+        }
+
+        .yt-overlay-top {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
+            right: 0;
+            padding: 14px 16px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
+            color: #fff;
+            pointer-events: none;
         }
 
-        /* Contenedor limpio para TikTok embed */
+        .yt-overlay-title {
+            font-family: var(--font-main);
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            display: block;
+            line-height: 1.2;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        }
+
+        .yt-overlay-author {
+            font-size: 0.8rem;
+            color: #e0e0e0;
+            display: block;
+            margin-top: 2px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .yt-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 68px;
+            height: 48px;
+            background-color: #ff0000;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .yt-card:hover .yt-play-btn {
+            transform: translate(-50%, -50%) scale(1.08);
+            background-color: #cc0000;
+        }
+
+        .yt-play-btn::after {
+            content: "";
+            border-style: solid;
+            border-width: 10px 0 10px 18px;
+            border-color: transparent transparent transparent #ffffff;
+            margin-left: 4px;
+        }
+
+        .yt-badge-bottom {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.78);
+            color: #fff;
+            font-family: var(--font-main);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        /* Contenedor TikTok */
         .tiktok-container {
             width: 100%;
-            height: 540px;
+            height: 520px;
             background-color: #000;
             border-radius: 4px;
             overflow: hidden;
             border: 1px solid var(--border-subtle);
-            display: flex;
-            justify-content: center;
         }
 
         .tiktok-container iframe {
             width: 100%;
             height: 100%;
             border: 0;
-        }
-
-        .project-header-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 10px;
-            flex-wrap: wrap;
         }
 
         .project-info h3 {
@@ -577,15 +643,13 @@
 
                 <div class="projects-wrapper">
 
-                    <!-- 1. Soul Ascension (Con GIF) -->
+                    <!-- PUESTO 1: Soul Ascension (Con GIF) -->
                     <div class="project-item" data-tags="unity web jam">
                         <a href="https://juanmartincieri.itch.io/" target="_blank" class="project-media">
                             <img src="soul_ascension.gif" alt="Soul Ascension: Inverse Gameplay GIF">
                         </a>
                         <div class="project-info">
-                            <div class="project-header-row">
-                                <h3>Soul Ascension: Inverse</h3>
-                            </div>
+                            <h3>Soul Ascension: Inverse</h3>
                             <span class="project-role">Lead Programmer & Producer · Winning Game Jam Project</span>
                             <ul class="project-bullets">
                                 <li>Designed and implemented the core <strong>"Grappling Hook"</strong> mechanic and 2D locomotion, optimizing game feel and movement precision.</li>
@@ -607,7 +671,7 @@
                         </div>
                     </div>
 
-                    <!-- 2. Chalkscape (SEGUNDO LUGAR + TIKTOK EMBED) -->
+                    <!-- PUESTO 2: Chalkscape (Abajo de Soul Ascension y arriba de Ascenso) -->
                     <div class="project-item" data-tags="unity">
                         <div class="tiktok-container">
                             <iframe 
@@ -638,7 +702,7 @@
                         </div>
                     </div>
 
-                    <!-- 3. Ascenso -->
+                    <!-- PUESTO 3: Ascenso -->
                     <div class="project-item" data-tags="unreal">
                         <a href="https://juanmartincieri.itch.io/" target="_blank" class="project-media">
                             <img src="ascenso.png" alt="Ascenso">
@@ -665,17 +729,19 @@
                         </div>
                     </div>
 
-                    <!-- 4. Ritos y Retos (YOUTUBE CORREGIDO: 0bHGKaptseU) -->
+                    <!-- PUESTO 4: Ritos y Retos (Tarjeta visual estilo YouTube sin error de bloqueo) -->
                     <div class="project-item" data-tags="unity web jam">
-                        <div class="video-container">
-                            <iframe 
-                                src="https://www.youtube.com/embed/0bHGKaptseU" 
-                                title="RITOS Y RETOS" 
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                allowfullscreen>
-                            </iframe>
-                        </div>
+                        <a href="https://www.youtube.com/watch?v=0bHGKaptseU" target="_blank" class="yt-card">
+                            <img src="https://img.youtube.com/vi/0bHGKaptseU/maxresdefault.jpg" 
+                                 onerror="this.src='https://img.youtube.com/vi/0bHGKaptseU/hqdefault.jpg'" 
+                                 alt="RITOS Y RETOS Trailer">
+                            <div class="yt-overlay-top">
+                                <span class="yt-overlay-title">RITOS Y RETOS</span>
+                                <span class="yt-overlay-author">Grego Barcenilla</span>
+                            </div>
+                            <div class="yt-play-btn"></div>
+                            <div class="yt-badge-bottom">Mirar en ▶ YouTube</div>
+                        </a>
                         <div class="project-info">
                             <h3>Ritos y Retos</h3>
                             <span class="project-role">Gameplay Programmer</span>
@@ -692,109 +758,4 @@
                                     <span class="tech-pill">Data Persistence</span>
                                     <span class="tech-pill">WebGL</span>
                                 </div>
-                                <div class="project-links">
-                                    <a href="https://juanmartincieri.itch.io/" target="_blank">▶ Play in Browser (itch.io) ↗</a>
-                                    <a href="http://www.youtube.com/watch?v=0bHGKaptseU" target="_blank">YouTube Trailer ↗</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 5. 10 Segundos para el Bardo -->
-                    <div class="project-item" data-tags="unity web jam">
-                        <a href="https://juanmartincieri.itch.io/" target="_blank" class="project-media">
-                            <img src="bardo.png" alt="10 Segundos para el Bardo">
-                        </a>
-                        <div class="project-info">
-                            <h3>10 Segundos para el Bardo</h3>
-                            <span class="project-role">Gameplay Programmer</span>
-                            <ul class="project-bullets">
-                                <li>2D time-attack arcade game developed in <strong>Unity (C#)</strong> where players have 10 seconds to tidy up a room under extreme time pressure.</li>
-                                <li>Programmed interactive object grabbing, drag-and-drop placement logic, and collision detection systems.</li>
-                                <li>Implemented the countdown timer state machine, score/cleanup progress tracking (0 to 20 objects), and fast round loop transitions.</li>
-                            </ul>
-                            <div class="project-footer">
-                                <div class="project-tech">
-                                    <span class="tech-pill">Unity</span>
-                                    <span class="tech-pill">C#</span>
-                                    <span class="tech-pill">2D Time-Attack</span>
-                                    <span class="tech-pill">State Machine</span>
-                                    <span class="tech-pill">WebGL</span>
-                                </div>
-                                <div class="project-links">
-                                    <a href="https://juanmartincieri.itch.io/" target="_blank">▶ Play in Browser (itch.io) ↗</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- EXPERIENCE & EDUCATION -->
-        <section class="section-row">
-            <div class="section-label">Experience & Education</div>
-            <div>
-                <div class="exp-block">
-                    <div class="exp-header">
-                        <h3>Xowen Studio</h3>
-                        <span class="exp-date">Mendoza, AR</span>
-                    </div>
-                    <div class="exp-role">Programmer & Designer</div>
-                    <ul class="project-bullets">
-                        <li>Developed and implemented mechanics and features in <strong>Unreal Engine 5</strong> projects, prioritizing technical problem-solving and optimization.</li>
-                        <li>Participated in the full development pipeline, applying standardized game production methodologies.</li>
-                        <li>Completed 192 hours of certified technical training in Game Programming and Production, endorsed by Xowen Studio and the Ministry of Production of Mendoza.</li>
-                    </ul>
-                </div>
-
-                <div class="exp-block">
-                    <div class="exp-header">
-                        <h3>Universidad de Mendoza (UM)</h3>
-                        <span class="exp-date">Feb 2025 - Present</span>
-                    </div>
-                    <div class="exp-role">Associate Degree in Game Development</div>
-                </div>
-
-                <div class="exp-block">
-                    <div class="exp-header">
-                        <h3>Universidad Tecnológica Nacional (UTN)</h3>
-                        <span class="exp-date">Feb 2021 - 2024</span>
-                    </div>
-                    <div class="exp-role">Information Systems Engineering (Partial Studies)</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FOOTER -->
-        <footer>
-            <div><strong>Juan Martin Cieri Venturini</strong> · Cieri.exe</div>
-            <div class="footer-links">
-                <a href="mailto:juanchocieri1@gmail.com">Email</a>
-                <a href="https://juanmartincieri.itch.io/" target="_blank">Itch.io</a>
-                <a href="https://www.linkedin.com/in/juan-martin-cieri-venturini" target="_blank">LinkedIn</a>
-                <a href="CV_Cieri_Juan_Martin_EN.pdf" target="_blank">CV</a>
-            </div>
-        </footer>
-    </div>
-
-    <script>
-        function filterProjects(tag, btn) {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            const items = document.querySelectorAll('.project-item');
-            items.forEach(item => {
-                const itemTags = item.getAttribute('data-tags');
-                if (tag === 'all' || itemTags.includes(tag)) {
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.add('hidden');
-                }
-            });
-        }
-    </script>
-
-</body>
-</html>
+                                <div class
