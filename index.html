@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juan Martin Cieri | Game Programmer</title>
+    <title>Juan Martin Cieri | Game & Systems Programmer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
@@ -13,7 +13,8 @@
             --text-dark: #36363c;
             --text-body: #55555e;
             --text-light: #888890;
-            --accent: #9e2a2b; /* Rojo sobrio estilo Rogers */
+            --accent: #9e2a2b; /* Rojo sobrio estilo Joeb Rogers */
+            --accent-soft: rgba(158, 42, 43, 0.08);
             --border-subtle: #ebebeb;
             --font-main: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-mono: 'Inconsolata', monospace;
@@ -35,7 +36,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Barra superior sutil */
         .top-bar {
             height: 8px;
             background-color: #2b292e;
@@ -59,13 +59,13 @@
             color: var(--text-dark);
         }
 
-        /* HERO SECTION (Estilo Joeb Rogers) */
+        /* HERO SECTION */
         .hero {
-            min-height: 75vh;
+            min-height: 72vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 80px 0;
+            padding: 80px 0 60px;
             max-width: 900px;
             margin: 0 auto;
         }
@@ -74,7 +74,7 @@
             font-size: 2.5rem;
             font-weight: 300;
             color: var(--text-dark);
-            margin-bottom: 40px;
+            margin-bottom: 36px;
         }
 
         .hero-main {
@@ -82,20 +82,20 @@
             align-items: center;
             justify-content: space-between;
             gap: 50px;
-            margin-bottom: 50px;
+            margin-bottom: 44px;
         }
 
         .hero-bio {
-            font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+            font-size: clamp(1.55rem, 3vw, 2.2rem);
             font-weight: 300;
             line-height: 1.4;
             color: var(--text-dark);
-            max-width: 620px;
+            max-width: 630px;
         }
 
         .hero-avatar {
-            width: 170px;
-            height: 170px;
+            width: 165px;
+            height: 165px;
             border-radius: 50%;
             object-fit: cover;
             flex-shrink: 0;
@@ -115,12 +115,13 @@
         }
 
         .link-underline:hover {
-            background-color: rgba(158, 42, 43, 0.08);
+            background-color: var(--accent-soft);
         }
 
         .hero-quicklinks {
             margin-top: 24px;
             display: flex;
+            flex-wrap: wrap;
             gap: 24px;
             font-family: var(--font-mono);
             font-size: 0.95rem;
@@ -140,7 +141,7 @@
         /* SECCIONES DE 2 COLUMNAS */
         .section-row {
             display: grid;
-            grid-template-columns: 220px 1fr;
+            grid-template-columns: 210px 1fr;
             gap: 50px;
             padding: 70px 0;
             border-top: 1px solid var(--border-subtle);
@@ -158,11 +159,11 @@
 
         /* BACKGROUND */
         .background-content p {
-            margin-bottom: 22px;
-            max-width: 700px;
+            margin-bottom: 20px;
+            max-width: 720px;
         }
 
-        /* SKILLS (4 columnas limpias) */
+        /* SKILLS */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -188,7 +189,49 @@
             color: var(--text-body);
         }
 
-        /* FEATURED PROJECTS (Imagen izquierda + Detalle CV derecha) */
+        /* FILTRO DE TAGS SUTIL (Inspirado en Franco Yudica) */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 36px;
+            align-items: center;
+        }
+
+        .filter-label {
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            color: var(--text-light);
+            margin-right: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid #d4d4d8;
+            color: var(--text-body);
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            padding: 4px 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .filter-btn.active {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        /* FEATURED PROJECTS */
         .projects-wrapper {
             display: flex;
             flex-direction: column;
@@ -202,12 +245,17 @@
             align-items: start;
         }
 
+        .project-item.hidden {
+            display: none;
+        }
+
         .project-media {
             width: 100%;
-            border-radius: 3px;
+            border-radius: 4px;
             overflow: hidden;
             background-color: #f4f4f6;
             border: 1px solid var(--border-subtle);
+            display: block;
         }
 
         .project-media img {
@@ -221,8 +269,37 @@
             transform: scale(1.02);
         }
 
+        /* Contenedor 16:9 para el video de YouTube de Ritos y Retos */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Aspect Ratio 16:9 */
+            height: 0;
+            background-color: #000;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .project-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
         .project-info h3 {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--text-dark);
             margin-bottom: 2px;
@@ -230,45 +307,77 @@
 
         .project-role {
             font-family: var(--font-mono);
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             color: var(--accent);
             font-weight: 700;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             display: block;
         }
 
         .project-bullets {
             padding-left: 18px;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             font-size: 0.95rem;
             line-height: 1.55;
             color: var(--text-body);
         }
 
         .project-bullets li {
-            margin-bottom: 8px;
+            margin-bottom: 7px;
+        }
+
+        .project-footer {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 10px;
         }
 
         .project-tech {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
-            margin-top: 12px;
         }
 
         .tech-pill {
             font-family: var(--font-mono);
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             color: var(--text-dark);
-            border: 1px solid #d4d4d8;
+            background-color: #f7f7f8;
+            border: 1px solid #e2e2e6;
             padding: 2px 8px;
             border-radius: 3px;
+        }
+
+        .tech-pill.badge-highlight {
+            border-color: rgba(158, 42, 43, 0.35);
+            color: var(--accent);
+            background-color: var(--accent-soft);
+            font-weight: 700;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 16px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .project-links a {
+            color: var(--text-dark);
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 1px;
+        }
+
+        .project-links a:hover {
+            color: var(--accent);
         }
 
         /* EXPERIENCE & EDUCATION */
         .exp-block {
             margin-bottom: 32px;
-            max-width: 700px;
+            max-width: 720px;
         }
 
         .exp-block:last-child {
@@ -279,7 +388,7 @@
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .exp-header h3 {
@@ -295,8 +404,9 @@
         }
 
         .exp-role {
-            font-size: 0.95rem;
-            font-weight: 600;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            font-weight: 700;
             color: var(--accent);
             margin-bottom: 8px;
         }
@@ -384,10 +494,10 @@
             <div class="section-label">Background</div>
             <div class="background-content">
                 <p>
-                    I'm a Game & Systems Programmer currently based in <strong>Mendoza, Argentina</strong>. I have experience leading technical development across multiple independent projects and Game Jams under my studio brand <strong>Cieri.exe</strong>, as well as working in standardized production pipelines at <strong>Xowen Studio</strong>.
+                    I'm a Game & Systems Programmer based in <strong>Mendoza, Argentina</strong>. I lead technical development across independent games and Game Jams under <strong>Cieri.exe</strong>, and have worked in standardized production pipelines at <strong>Xowen Studio</strong>.
                 </p>
                 <p>
-                    I'm currently pursuing my <strong>Associate Degree in Game Development</strong> at <strong>Universidad de Mendoza</strong>, building upon a strong foundation in <strong>Information Systems Engineering</strong> at <strong>UTN</strong>. My focus lies in writing clean, modular code, designing responsive movement and gameplay systems, and pushing engine performance using tools like Nanite, LODs, and World Partition.
+                    I'm currently finishing my <strong>Associate Degree in Game Development</strong> at <strong>Universidad de Mendoza</strong>, building upon my background in <strong>Information Systems Engineering</strong> at <strong>UTN</strong>. I love turning game design concepts into responsive mechanics, writing modular architectures, and optimizing frame rates using tools like Nanite, LODs, and World Partition.
                 </p>
             </div>
         </section>
@@ -401,7 +511,7 @@
                     <ul>
                         <li><strong>C#</strong></li>
                         <li><strong>C++</strong></li>
-                        <li>Blueprints (Visual Scripting)</li>
+                        <li>Blueprints (UE5)</li>
                     </ul>
                 </div>
                 <div class="skill-col">
@@ -433,96 +543,170 @@
             </div>
         </section>
 
-        <!-- FEATURED PROJECTS (Con imágenes + detalle técnico del CV) -->
+        <!-- FEATURED PROJECTS -->
         <section class="section-row">
             <div class="section-label">Featured Projects</div>
-            <div class="projects-wrapper">
-
-                <!-- Soul Ascension -->
-                <div class="project-item">
-                    <a href="https://juanmartincieri.itch.io/" target="_blank" class="project-media">
-                        <img src="soul_ascension.png" alt="Soul Ascension: Inverse">
-                    </a>
-                    <div class="project-info">
-                        <h3>Soul Ascension: Inverse</h3>
-                        <span class="project-role">Lead Programmer & Producer · Winning Game Jam Project</span>
-                        <ul class="project-bullets">
-                            <li>Designed and implemented the core <strong>"Grappling Hook"</strong> mechanic and 2D locomotion, optimizing game feel and movement precision.</li>
-                            <li>Developed an <strong>Endless Loop</strong> procedural level generation system.</li>
-                            <li>Programmed and implemented the general game UI and state flow.</li>
-                        </ul>
-                        <div class="project-tech">
-                            <span class="tech-pill">Unity</span>
-                            <span class="tech-pill">C#</span>
-                            <span class="tech-pill">2D Locomotion</span>
-                            <span class="tech-pill">Level Generation</span>
-                        </div>
-                    </div>
+            <div>
+                <!-- Barra de filtros sutil inspirada en Franco Yudica -->
+                <div class="filter-bar">
+                    <span class="filter-label">Filter:</span>
+                    <button class="filter-btn active" onclick="filterProjects('all', this)">All (5)</button>
+                    <button class="filter-btn" onclick="filterProjects('unity', this)">Unity (C#)</button>
+                    <button class="filter-btn" onclick="filterProjects('unreal', this)">Unreal Engine 5</button>
+                    <button class="filter-btn" onclick="filterProjects('web', this)">Playable in Browser</button>
+                    <button class="filter-btn" onclick="filterProjects('jam', this)">Game Jam</button>
                 </div>
 
-                <!-- Ascenso -->
-                <div class="project-item">
-                    <a href="https://juanmartincieri.itch.io/" target="_blank" class="project-media">
-                        <img src="ascenso.png" alt="Ascenso">
-                    </a>
-                    <div class="project-info">
-                        <h3>Ascenso</h3>
-                        <span class="project-role">Solo Developer</span>
-                        <ul class="project-bullets">
-                            <li>Developed the core gameplay system using <strong>Blueprints in Unreal Engine 5</strong>, prioritizing component modularity and scalability.</li>
-                            <li>Optimized rendering and large-scale asset management using <strong>Nanite, LODs, and World Partition</strong> to ensure stable 60 FPS performance.</li>
-                        </ul>
-                        <div class="project-tech">
-                            <span class="tech-pill">Unreal Engine 5</span>
-                            <span class="tech-pill">Blueprints</span>
-                            <span class="tech-pill">Nanite</span>
-                            <span class="tech-pill">World Partition</span>
+                <div class="projects-wrapper">
+
+                    <!-- 1. Soul Ascension (Con GIF) -->
+                    <div class="project-item" data-tags="unity web jam">
+                        <a href="https://juanmartincieri.itch.io/" target="_blank" class="project-media">
+                            <!-- Subí tu GIF con el nombre soul_ascension.gif -->
+                            <img src="soul_ascension.gif" alt="Soul Ascension: Inverse Gameplay GIF">
+                        </a>
+                        <div class="project-info">
+                            <div class="project-header-row">
+                                <h3>Soul Ascension: Inverse</h3>
+                            </div>
+                            <span class="project-role">Lead Programmer & Producer · Winning Game Jam Project</span>
+                            <ul class="project-bullets">
+                                <li>Designed and implemented the core <strong>"Grappling Hook"</strong> mechanic and 2D locomotion, optimizing game feel and movement precision.</li>
+                                <li>Developed an <strong>Endless Loop</strong> procedural level generation system.</li>
+                                <li>Programmed and implemented the general game UI and state flow.</li>
+                            </ul>
+                            <div class="project-footer">
+                                <div class="project-tech">
+                                    <span class="tech-pill badge-highlight">🏆 1st Place Jam</span>
+                                    <span class="tech-pill">Unity</span>
+                                    <span class="tech-pill">C#</span>
+                                    <span class="tech-pill">2D Physics</span>
+                                    <span class="tech-pill">WebGL</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://juanmartincieri.itch.io/" target="_blank">▶ Play in Browser (itch.io) ↗</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Ritos y Retos -->
-                <div class="project-item">
-                    <a href="https://juanmartincieri.itch.io/" target="_blank" class="project-media">
-                        <img src="ritos_y_retos.png" alt="Ritos y Retos">
-                    </a>
-                    <div class="project-info">
-                        <h3>Ritos y Retos</h3>
-                        <span class="project-role">Gameplay Programmer</span>
-                        <ul class="project-bullets">
-                            <li>Micro-games title developed with a modular architecture in <strong>Unity (C#)</strong>.</li>
-                            <li>Implemented a scene management architecture to control dynamic flow across multiple minigames.</li>
-                            <li>Programmed win/loss validation systems, session data persistence for player progress tracking, and general game UI.</li>
-                        </ul>
-                        <div class="project-tech">
-                            <span class="tech-pill">Unity</span>
-                            <span class="tech-pill">C#</span>
-                            <span class="tech-pill">Scene Management</span>
-                            <span class="tech-pill">Data Persistence</span>
+                    <!-- 2. Ascenso -->
+                    <div class="project-item" data-tags="unreal">
+                        <a href="https://juanmartincieri.itch.io/" target="_blank" class="project-media">
+                            <img src="ascenso.png" alt="Ascenso">
+                        </a>
+                        <div class="project-info">
+                            <h3>Ascenso</h3>
+                            <span class="project-role">Solo Developer</span>
+                            <ul class="project-bullets">
+                                <li>Developed the core gameplay system using <strong>Blueprints in Unreal Engine 5</strong>, prioritizing component modularity.</li>
+                                <li>Optimized rendering and large-scale asset management using <strong>Nanite, LODs, and World Partition</strong> to ensure stable 60 FPS performance.</li>
+                            </ul>
+                            <div class="project-footer">
+                                <div class="project-tech">
+                                    <span class="tech-pill">Unreal Engine 5</span>
+                                    <span class="tech-pill">Blueprints</span>
+                                    <span class="tech-pill">Nanite</span>
+                                    <span class="tech-pill">World Partition</span>
+                                    <span class="tech-pill">LODs</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://juanmartincieri.itch.io/" target="_blank">View on itch.io ↗</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Chalkscape -->
-                <div class="project-item">
-                    <a href="https://juanmartincieri.itch.io/" target="_blank" class="project-media">
-                        <img src="chalkscape.png" alt="Chalkscape">
-                    </a>
-                    <div class="project-info">
-                        <h3>Chalkscape</h3>
-                        <span class="project-role">Game Developer</span>
-                        <ul class="project-bullets">
-                            <li>3D minimalist puzzle game centered around spatial navigation and geometric problem-solving.</li>
-                            <li>Designed and programmed interactive chalkboard mechanics, spatial visual feedback, and core puzzle validation systems.</li>
-                        </ul>
-                        <div class="project-tech">
-                            <span class="tech-pill">3D Puzzle</span>
-                            <span class="tech-pill">Gameplay Systems</span>
-                            <span class="tech-pill">Interactive Mechanics</span>
+                    <!-- 3. Ritos y Retos (Con Video de YouTube o miniatura estilo YouTube) -->
+                    <div class="project-item" data-tags="unity web jam">
+                        <!-- Reemplazá VIDEO_ID_AQUI por el ID de 11 letras del video de YouTube de Grego Barcenilla -->
+                        <div class="video-container">
+                            <iframe 
+                                src="https://www.youtube.com/embed/VIDEO_ID_AQUI" 
+                                title="RITOS Y RETOS" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="project-info">
+                            <h3>Ritos y Retos</h3>
+                            <span class="project-role">Gameplay Programmer</span>
+                            <ul class="project-bullets">
+                                <li>Fast-paced Mayan ritual micro-games title developed with a modular architecture in <strong>Unity (C#)</strong>.</li>
+                                <li>Implemented a dynamic scene management architecture to control flow and difficulty scaling across multiple minigames.</li>
+                                <li>Programmed win/loss validation systems, session data persistence for player progress tracking, and general game UI.</li>
+                            </ul>
+                            <div class="project-footer">
+                                <div class="project-tech">
+                                    <span class="tech-pill">Unity</span>
+                                    <span class="tech-pill">C#</span>
+                                    <span class="tech-pill">Scene Management</span>
+                                    <span class="tech-pill">Data Persistence</span>
+                                    <span class="tech-pill">WebGL</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://juanmartincieri.itch.io/" target="_blank">▶ Play in Browser (itch.io) ↗</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                    <!-- 4. 10 Segundos para el Bardo (NUEVO) -->
+                    <div class="project-item" data-tags="unity web jam">
+                        <a href="https://juanmartincieri.itch.io/" target="_blank" class="project-media">
+                            <!-- Subí tu captura con el nombre bardo.png -->
+                            <img src="bardo.png" alt="10 Segundos para el Bardo">
+                        </a>
+                        <div class="project-info">
+                            <h3>10 Segundos para el Bardo</h3>
+                            <span class="project-role">Gameplay Programmer</span>
+                            <ul class="project-bullets">
+                                <li>2D time-attack arcade game developed in <strong>Unity (C#)</strong> where players have 10 seconds to tidy up a room under extreme time pressure.</li>
+                                <li>Programmed interactive object grabbing, drag-and-drop placement logic, and collision detection systems.</li>
+                                <li>Implemented the countdown timer state machine, score/cleanup progress tracking (0 to 20 objects), and fast round loop transitions.</li>
+                            </ul>
+                            <div class="project-footer">
+                                <div class="project-tech">
+                                    <span class="tech-pill">Unity</span>
+                                    <span class="tech-pill">C#</span>
+                                    <span class="tech-pill">2D Time-Attack</span>
+                                    <span class="tech-pill">State Machine</span>
+                                    <span class="tech-pill">WebGL</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://juanmartincieri.itch.io/" target="_blank">▶ Play in Browser (itch.io) ↗</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Chalkscape -->
+                    <div class="project-item" data-tags="unity">
+                        <a href="https://juanmartincieri.itch.io/" target="_blank" class="project-media">
+                            <img src="chalkscape.png" alt="Chalkscape">
+                        </a>
+                        <div class="project-info">
+                            <h3>Chalkscape</h3>
+                            <span class="project-role">Game Developer</span>
+                            <ul class="project-bullets">
+                                <li>3D minimalist puzzle game centered around spatial navigation and geometric problem-solving.</li>
+                                <li>Designed and programmed interactive chalkboard mechanics, spatial visual feedback, and core puzzle validation systems.</li>
+                            </ul>
+                            <div class="project-footer">
+                                <div class="project-tech">
+                                    <span class="tech-pill">Unity</span>
+                                    <span class="tech-pill">C#</span>
+                                    <span class="tech-pill">3D Puzzle</span>
+                                    <span class="tech-pill">Interactive Systems</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://juanmartincieri.itch.io/" target="_blank">View on itch.io ↗</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </section>
 
@@ -573,7 +757,24 @@
         </footer>
     </div>
 
-</body>
-</html>
+    <script>
+        function filterProjects(tag, btn) {
+            // Actualizar botón activo
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Mostrar/ocultar proyectos según el tag
+            const items = document.querySelectorAll('.project-item');
+            items.forEach(item => {
+                const itemTags = item.getAttribute('data-tags');
+                if (tag === 'all' || itemTags.includes(tag)) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+
 </body>
 </html>
