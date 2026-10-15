@@ -13,7 +13,7 @@
             --text-dark: #36363c;
             --text-body: #55555e;
             --text-light: #888890;
-            --accent: #9e2a2b; /* Rojo sobrio estilo Joeb Rogers */
+            --accent: #9e2a2b;
             --accent-soft: rgba(158, 42, 43, 0.08);
             --border-subtle: #ebebeb;
             --font-main: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -189,7 +189,7 @@
             color: var(--text-body);
         }
 
-        /* FILTRO DE TAGS SUTIL (Inspirado en Franco Yudica) */
+        /* FILTRO DE TAGS */
         .filter-bar {
             display: flex;
             flex-wrap: wrap;
@@ -269,11 +269,11 @@
             transform: scale(1.02);
         }
 
-        /* Contenedor 16:9 para el video de YouTube de Ritos y Retos */
+        /* Contenedor 16:9 para YouTube */
         .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* Aspect Ratio 16:9 */
+            padding-bottom: 56.25%;
             height: 0;
             background-color: #000;
             border-radius: 4px;
@@ -285,6 +285,24 @@
             position: absolute;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Contenedor limpio para TikTok embed */
+        .tiktok-container {
+            width: 100%;
+            height: 540px;
+            background-color: #000;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: center;
+        }
+
+        .tiktok-container iframe {
             width: 100%;
             height: 100%;
             border: 0;
@@ -358,6 +376,7 @@
 
         .project-links {
             display: flex;
+            flex-wrap: wrap;
             gap: 16px;
             font-family: var(--font-mono);
             font-size: 0.85rem;
@@ -547,7 +566,6 @@
         <section class="section-row">
             <div class="section-label">Featured Projects</div>
             <div>
-                <!-- Barra de filtros sutil inspirada en Franco Yudica -->
                 <div class="filter-bar">
                     <span class="filter-label">Filter:</span>
                     <button class="filter-btn active" onclick="filterProjects('all', this)">All (5)</button>
@@ -562,7 +580,6 @@
                     <!-- 1. Soul Ascension (Con GIF) -->
                     <div class="project-item" data-tags="unity web jam">
                         <a href="https://juanmartincieri.itch.io/" target="_blank" class="project-media">
-                            <!-- Subí tu GIF con el nombre soul_ascension.gif -->
                             <img src="soul_ascension.gif" alt="Soul Ascension: Inverse Gameplay GIF">
                         </a>
                         <div class="project-info">
@@ -590,7 +607,38 @@
                         </div>
                     </div>
 
-                    <!-- 2. Ascenso -->
+                    <!-- 2. Chalkscape (SEGUNDO LUGAR + TIKTOK EMBED) -->
+                    <div class="project-item" data-tags="unity">
+                        <div class="tiktok-container">
+                            <iframe 
+                                src="https://www.tiktok.com/player/v1/7696159871401610504?music_info=1&description=1" 
+                                title="Chalkscape Gameplay TikTok" 
+                                allow="fullscreen; autoplay; encrypted-media">
+                            </iframe>
+                        </div>
+                        <div class="project-info">
+                            <h3>Chalkscape</h3>
+                            <span class="project-role">Game Developer</span>
+                            <ul class="project-bullets">
+                                <li>3D minimalist puzzle game centered around drawing geometric shapes on a chalkboard to solve spatial navigation puzzles.</li>
+                                <li>Designed and programmed interactive chalkboard drawing mechanics, spatial visual feedback, custom shaders, and core puzzle validation systems.</li>
+                            </ul>
+                            <div class="project-footer">
+                                <div class="project-tech">
+                                    <span class="tech-pill">Unity</span>
+                                    <span class="tech-pill">C#</span>
+                                    <span class="tech-pill">3D Puzzle</span>
+                                    <span class="tech-pill">Interactive Systems</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://juanmartincieri.itch.io/" target="_blank">View on itch.io ↗</a>
+                                    <a href="https://www.tiktok.com/@juanchocieri2/video/7696159871401610504" target="_blank">Watch on TikTok ↗</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Ascenso -->
                     <div class="project-item" data-tags="unreal">
                         <a href="https://juanmartincieri.itch.io/" target="_blank" class="project-media">
                             <img src="ascenso.png" alt="Ascenso">
@@ -617,14 +665,14 @@
                         </div>
                     </div>
 
-                    <!-- 3. Ritos y Retos (Con Video de YouTube o miniatura estilo YouTube) -->
+                    <!-- 4. Ritos y Retos (YOUTUBE CORREGIDO: 0bHGKaptseU) -->
                     <div class="project-item" data-tags="unity web jam">
-                        <!-- Reemplazá VIDEO_ID_AQUI por el ID de 11 letras del video de YouTube de Grego Barcenilla -->
                         <div class="video-container">
                             <iframe 
-                                src="https://www.youtube.com/embed/VIDEO_ID_AQUI" 
+                                src="https://www.youtube.com/embed/0bHGKaptseU" 
                                 title="RITOS Y RETOS" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                 allowfullscreen>
                             </iframe>
                         </div>
@@ -646,15 +694,15 @@
                                 </div>
                                 <div class="project-links">
                                     <a href="https://juanmartincieri.itch.io/" target="_blank">▶ Play in Browser (itch.io) ↗</a>
+                                    <a href="http://www.youtube.com/watch?v=0bHGKaptseU" target="_blank">YouTube Trailer ↗</a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 4. 10 Segundos para el Bardo (NUEVO) -->
+                    <!-- 5. 10 Segundos para el Bardo -->
                     <div class="project-item" data-tags="unity web jam">
                         <a href="https://juanmartincieri.itch.io/" target="_blank" class="project-media">
-                            <!-- Subí tu captura con el nombre bardo.png -->
                             <img src="bardo.png" alt="10 Segundos para el Bardo">
                         </a>
                         <div class="project-info">
@@ -675,32 +723,6 @@
                                 </div>
                                 <div class="project-links">
                                     <a href="https://juanmartincieri.itch.io/" target="_blank">▶ Play in Browser (itch.io) ↗</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 5. Chalkscape -->
-                    <div class="project-item" data-tags="unity">
-                        <a href="https://juanmartincieri.itch.io/" target="_blank" class="project-media">
-                            <img src="chalkscape.png" alt="Chalkscape">
-                        </a>
-                        <div class="project-info">
-                            <h3>Chalkscape</h3>
-                            <span class="project-role">Game Developer</span>
-                            <ul class="project-bullets">
-                                <li>3D minimalist puzzle game centered around spatial navigation and geometric problem-solving.</li>
-                                <li>Designed and programmed interactive chalkboard mechanics, spatial visual feedback, and core puzzle validation systems.</li>
-                            </ul>
-                            <div class="project-footer">
-                                <div class="project-tech">
-                                    <span class="tech-pill">Unity</span>
-                                    <span class="tech-pill">C#</span>
-                                    <span class="tech-pill">3D Puzzle</span>
-                                    <span class="tech-pill">Interactive Systems</span>
-                                </div>
-                                <div class="project-links">
-                                    <a href="https://juanmartincieri.itch.io/" target="_blank">View on itch.io ↗</a>
                                 </div>
                             </div>
                         </div>
@@ -759,11 +781,9 @@
 
     <script>
         function filterProjects(tag, btn) {
-            // Actualizar botón activo
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            // Mostrar/ocultar proyectos según el tag
             const items = document.querySelectorAll('.project-item');
             items.forEach(item => {
                 const itemTags = item.getAttribute('data-tags');
