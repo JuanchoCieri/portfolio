@@ -758,4 +758,109 @@
                                     <span class="tech-pill">Data Persistence</span>
                                     <span class="tech-pill">WebGL</span>
                                 </div>
-                                <div class
+                                <div class="project-links">
+                                    <a href="https://juanmartincieri.itch.io/" target="_blank">▶ Play in Browser (itch.io) ↗</a>
+                                    <a href="https://www.youtube.com/watch?v=0bHGKaptseU" target="_blank">Watch Trailer on YouTube ↗</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PUESTO 5: 10 Segundos para el Bardo -->
+                    <div class="project-item" data-tags="unity web jam">
+                        <a href="https://juanmartincieri.itch.io/" target="_blank" class="project-media">
+                            <img src="bardo.png" alt="10 Segundos para el Bardo">
+                        </a>
+                        <div class="project-info">
+                            <h3>10 Segundos para el Bardo</h3>
+                            <span class="project-role">Gameplay Programmer</span>
+                            <ul class="project-bullets">
+                                <li>2D time-attack arcade game developed in <strong>Unity (C#)</strong> where players have 10 seconds to tidy up a room under extreme time pressure.</li>
+                                <li>Programmed interactive object grabbing, drag-and-drop placement logic, and collision detection systems.</li>
+                                <li>Implemented the countdown timer state machine, score/cleanup progress tracking (0 to 20 objects), and fast round loop transitions.</li>
+                            </ul>
+                            <div class="project-footer">
+                                <div class="project-tech">
+                                    <span class="tech-pill">Unity</span>
+                                    <span class="tech-pill">C#</span>
+                                    <span class="tech-pill">2D Time-Attack</span>
+                                    <span class="tech-pill">State Machine</span>
+                                    <span class="tech-pill">WebGL</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://juanmartincieri.itch.io/" target="_blank">▶ Play in Browser (itch.io) ↗</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE & EDUCATION -->
+        <section class="section-row">
+            <div class="section-label">Experience & Education</div>
+            <div>
+                <div class="exp-block">
+                    <div class="exp-header">
+                        <h3>Xowen Studio</h3>
+                        <span class="exp-date">Mendoza, AR</span>
+                    </div>
+                    <div class="exp-role">Programmer & Designer</div>
+                    <ul class="project-bullets">
+                        <li>Developed and implemented mechanics and features in <strong>Unreal Engine 5</strong> projects, prioritizing technical problem-solving and optimization.</li>
+                        <li>Participated in the full development pipeline, applying standardized game production methodologies.</li>
+                        <li>Completed 192 hours of certified technical training in Game Programming and Production, endorsed by Xowen Studio and the Ministry of Production of Mendoza.</li>
+                    </ul>
+                </div>
+
+                <div class="exp-block">
+                    <div class="exp-header">
+                        <h3>Universidad de Mendoza (UM)</h3>
+                        <span class="exp-date">Feb 2025 - Present</span>
+                    </div>
+                    <div class="exp-role">Associate Degree in Game Development</div>
+                </div>
+
+                <div class="exp-block">
+                    <div class="exp-header">
+                        <h3>Universidad Tecnológica Nacional (UTN)</h3>
+                        <span class="exp-date">Feb 2021 - 2024</span>
+                    </div>
+                    <div class="exp-role">Information Systems Engineering (Partial Studies)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div><strong>Juan Martin Cieri Venturini</strong> · Cieri.exe</div>
+            <div class="footer-links">
+                <a href="mailto:juanchocieri1@gmail.com">Email</a>
+                <a href="https://juanmartincieri.itch.io/" target="_blank">Itch.io</a>
+                <a href="https://www.linkedin.com/in/juan-martin-cieri-venturini" target="_blank">LinkedIn</a>
+                <a href="CV_Cieri_Juan_Martin_EN.pdf" target="_blank">CV</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function filterProjects(tag, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const items = document.querySelectorAll('.project-item');
+            items.forEach(item => {
+                const itemTags = item.getAttribute('data-tags');
+                if (tag === 'all' || itemTags.includes(tag)) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
